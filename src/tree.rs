@@ -145,3 +145,42 @@ fn update_total_size(entry: &DirEntry, total_size: &mut u64) {
 fn is_hidden(entry: &DirEntry) -> bool {
     entry.file_name().to_str().unwrap().starts_with(".")
 }
+
+
+pub fn scan_dirs(
+    dir: &Path,
+    size: &bool,
+    all: &bool,
+    total_size: &mut u64,
+    num_files: &mut u64,
+    total_dirs: &mut u64,
+) -> io::Result<()> {
+    if dir.is_dir() {
+        // collect all entries in the directory and sort them alphabetically
+        let mut entries = fs::read_dir(dir)?.collect::<Result<Vec<_>, io::Error>>()?;
+        entries.sort_by_key(|dir| dir.path());
+        if !*all {
+            entries = entries
+                .into_iter()
+                .filter(|entry| !is_hidden(entry))
+                .collect();
+        }
+        let n_contents = entries.iter().count();
+        // capture the total number of files in the directory
+        *num_files += n_contents as u64;
+        *total_size += 1 as u64;
+        *total_dirs += 1 as u64;
+
+        for entry in entries {
+            let path = entry.path();
+            if *size {
+                update_total_size(&entry, total_size);
+            } 
+            if path.is_dir() {
+                scan_dirs(&path, &size, &all, total_size, num_files, total_dirs)?;
+            }
+        }
+    }
+    Ok(())
+
+}

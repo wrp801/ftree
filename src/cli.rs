@@ -23,4 +23,13 @@ pub struct Args {
     /// show the file size for each entry. Defaults to false
     #[clap(short = 's', long = "size", action)]
     pub size: bool,
+
+    /// show a summary of the total number of files, directories, and the total size of all files
+    #[clap(long = "summary", help = "Show a summary of the total number of files, directories, and the total size of all files", action)]
+    pub summary: bool,
+
+    /// show only the diretories in the tree
+    #[clap(short = 'd', long = "dirs", help = "Show only the directories in the tree", action)]
+    pub dirs: bool,
+
 }
