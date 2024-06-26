@@ -27,7 +27,9 @@ impl FTreeMetadata {
     fn print(&self) {
         println!(
             "\n{} directories, {} files, total size: {}",
-            self.total_dirs, self.total_files, get_entry_size(&self.total_size)
+            self.total_dirs,
+            self.total_files,
+            get_entry_size(&self.total_size)
         );
     }
 }
@@ -47,4 +49,3 @@ fn get_entry_size(size: &u64) -> String {
         _ => format!("{:.2} GB", *size as f64 / 1073741824.0),
     }
 }
-
