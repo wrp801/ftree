@@ -2,7 +2,6 @@ use clap::Parser;
 use colored::Colorize;
 use std::path::Path;
 mod cli;
-mod meta;
 mod tree;
 
 fn main() {

@@ -182,3 +182,4 @@ pub fn scan_dirs(
     }
     Ok(())
 }
+
