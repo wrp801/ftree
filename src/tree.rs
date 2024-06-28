@@ -146,7 +146,6 @@ fn is_hidden(entry: &DirEntry) -> bool {
     entry.file_name().to_str().unwrap().starts_with(".")
 }
 
-
 pub fn scan_dirs(
     dir: &Path,
     size: &bool,
@@ -175,12 +174,11 @@ pub fn scan_dirs(
             update_total_size(&entry, total_size);
             // if *size {
             //     update_total_size(&entry, total_size);
-            // } 
+            // }
             if path.is_dir() {
                 scan_dirs(&path, &size, &all, total_size, num_files, total_dirs)?;
             }
         }
     }
     Ok(())
-
 }
