@@ -168,14 +168,14 @@ pub fn scan_dirs(
         let n_contents = entries.iter().count();
         // capture the total number of files in the directory
         *num_files += n_contents as u64;
-        *total_size += 1 as u64;
         *total_dirs += 1 as u64;
 
         for entry in entries {
             let path = entry.path();
-            if *size {
-                update_total_size(&entry, total_size);
-            } 
+            update_total_size(&entry, total_size);
+            // if *size {
+            //     update_total_size(&entry, total_size);
+            // } 
             if path.is_dir() {
                 scan_dirs(&path, &size, &all, total_size, num_files, total_dirs)?;
             }

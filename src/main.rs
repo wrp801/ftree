@@ -23,7 +23,7 @@ fn main() {
         let _ = tree::scan_dirs(&Path::new(&file_path), &size, &all, &mut total_size, &mut num_files, &mut total_dirs);
         println!("Total files: {}", num_files);
         println!("Total directories: {}", total_dirs);
-        println!("Total size of contents: {}", total_size);
+        println!("Total size of contents: {}", tree::get_entry_size(&total_size));
 
         
     } else {
