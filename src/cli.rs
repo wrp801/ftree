@@ -16,9 +16,6 @@ pub struct Args {
     #[clap(short = 'a', long = "all", action)]
     pub all: bool,
 
-    /// Colorize the output. Defaults to false
-    #[clap(short = 'c', long = "color", help = "Colorize the output", action)]
-    pub color: bool,
 
     /// show the file size for each entry. Defaults to false
     #[clap(short = 's', long = "size", action)]
