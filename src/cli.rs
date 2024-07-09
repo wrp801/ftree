@@ -29,4 +29,17 @@ pub struct Args {
     #[clap(short = 'd', long = "dirs", help = "Show only the directories in the tree", action)]
     pub dirs: bool,
 
+    /// The optional pattern of files to include/exclude in the tree
+    #[clap(short = 'p',long = "pattern")]
+    pub pattern: Option<String>,
+
+    /// the maximum depth of the tree to display
+    #[clap(short = 'n', help = "The maximum depth of the tree to display")]
+    pub depth: Option<usize>,
+
+    /// A pattern to exclude from the tree
+    #[clap(short = 'e',long = "exclude", action)]
+    pub exclude: bool
+
+
 }

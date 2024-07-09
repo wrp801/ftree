@@ -5,15 +5,19 @@ mod cli;
 mod tree;
 
 fn main() {
+    // arguments from the cli
     let cli = cli::Args::parse();
     let file_path = cli.file_path.unwrap_or(".".to_string());
     let size = cli.size;
     let all = cli.all;
     let summary = cli.summary;
+    let pattern = cli.pattern.unwrap_or("".to_string());
+    let exclude = cli.exclude;
 
     let mut total_size = u64::default();
     let mut num_files = u64::default();
     let mut total_dirs = u64::default();
+
 
 
     println!("{}", file_path.cyan()); // this prints out the starting directory or current working
@@ -33,6 +37,8 @@ fn main() {
             &all,
             &mut total_size,
             &mut num_files,
+            &pattern, 
+            &exclude,
         );
         let total_size_str = tree::get_entry_size(&total_size);
         if size {
