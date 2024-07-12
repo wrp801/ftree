@@ -27,7 +27,7 @@ If no filepath is provided, it will use the current working directory as the def
 
 ### Options 
 
-- To include all files and directories, pass the `-a` or `--all` flag. 
+- To include all files and directories, pass the `-a` or `--all` flag. Passing this will include hidden files
 
 - To include the file size within each entry, pass the `-s` or `--size` flag. This will display the size of each file within each directory
 
@@ -39,4 +39,56 @@ If no filepath is provided, it will use the current working directory as the def
 ### Patterns 
 You can pass a pattern to `ftree` by using the `-p` or `--pattern` flag. This will filter the results of the file tree and only display matches of the pattern. 
 If the `-e` or `--exclude` flag is passed, this will ignore any files/directories matching the pattern and thus they will not be displayed in the tree.
+
+
+## Examples
+Using this repo as the current working directory, you can expect the following results:
+
+
+
+### Display the contents of a directory
+```bash
+ftree src
+```
+OUTPUT:
+```
+src
+├── cli.rs
+├── main.rs
+└── tree.rs
+```
+
+### Display the summary
+
+```bash
+ftree --summary
+```
+
+OUTPUT:
+```
+.
+Total files: 2799
+Total directories: 295
+Total size of contents: 358.14 MB
+
+```
+
+### Exclude a directory 
+
+```bash
+ftree -p target -e
+```
+
+OUTPUT:
+```
+.
+├── Cargo.lock
+├── Cargo.toml
+├── README.md
+└── src
+    ├── cli.rs
+    ├── main.rs
+    └── tree.rs
+
+```
 
