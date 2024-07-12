@@ -29,17 +29,14 @@ If no filepath is provided, it will use the current working directory as the def
 
 - To include all files and directories, pass the `-a` or `--all` flag. 
 
-- To include the file size within each entry, pass the `-s` or `--size` flag.
+- To include the file size within each entry, pass the `-s` or `--size` flag. This will display the size of each file within each directory
 
-- To include a high level summary, pass the `--summary` flag
+- To include a high level summary, pass the `--summary` flag. This will display the total number of files, directories, and the total size
 
-
-
-
+- To only display the directories within the tree, pass the `-d` or `--dirs` flag
 
 
-
-
-
-
+### Patterns 
+You can pass a pattern to `ftree` by using the `-p` or `--pattern` flag. This will filter the results of the file tree and only display matches of the pattern. 
+If the `-e` or `--exclude` flag is passed, this will ignore any files/directories matching the pattern and thus they will not be displayed in the tree.
 
