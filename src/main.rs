@@ -13,6 +13,7 @@ fn main() {
     let summary = cli.summary;
     let pattern = cli.pattern.unwrap_or("".to_string());
     let exclude = cli.exclude;
+    let dirs = cli.dirs;
 
     let mut total_size = u64::default();
     let mut num_files = u64::default();
@@ -39,6 +40,7 @@ fn main() {
             &mut num_files,
             &pattern, 
             &exclude,
+            &dirs,
         );
         let total_size_str = tree::get_entry_size(&total_size);
         if size {

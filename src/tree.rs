@@ -14,6 +14,7 @@ use regex::Regex;
 /// * `num_files`: the total number of files in the directory
 /// * `pattern`: The pattern to match files
 /// * `exclude`: The flag to exclude files that match the pattern
+/// * `dirs`: The flag to only print directories
 pub fn visit_dirs(
     dir: &Path,
     prefix: &str,
@@ -23,6 +24,7 @@ pub fn visit_dirs(
     num_files: &mut u64,
     pattern: &str,
     exclude: &bool,
+    dirs: &bool,
 ) -> io::Result<()> {
     if dir.is_dir() {
         // collect all entries in the directory and sort them alphabetically
@@ -47,6 +49,12 @@ pub fn visit_dirs(
                     .filter(|entry| is_match(pattern, entry))
                     .collect();
             }
+        }
+        if *dirs {
+            entries = entries
+                .into_iter()
+                .filter(|entry| entry.path().is_dir())
+                .collect();
         }
         let n_contents = entries.iter().count();
         // capture the total number of files in the directory
@@ -75,7 +83,6 @@ pub fn visit_dirs(
                         path.file_name().unwrap().to_str().unwrap()
                     ),
                 }
-                // println!("{}{}{} ({})", prefix, connector, path.file_name().unwrap().to_str().unwrap(),&entry_size.bright_blue());
             } else {
                 println!(
                     "{}{}{}",
@@ -86,7 +93,7 @@ pub fn visit_dirs(
             }
             if path.is_dir() {
                 let new_prefix = format!("{}{}", prefix, new_prefix);
-                visit_dirs(&path, &new_prefix, &size, &all, total_size, num_files, &pattern, &exclude)?;
+                visit_dirs(&path, &new_prefix, &size, &all, total_size, num_files, &pattern, &exclude, &dirs)?;
             }
         }
     }

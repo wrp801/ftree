@@ -25,7 +25,6 @@ pub struct Args {
     #[clap(long = "summary", help = "Show a summary of the total number of files, directories, and the total size of all files", action)]
     pub summary: bool,
 
-    /// show only the diretories in the tree
     #[clap(short = 'd', long = "dirs", help = "Show only the directories in the tree", action)]
     pub dirs: bool,
 
@@ -33,9 +32,6 @@ pub struct Args {
     #[clap(short = 'p',long = "pattern")]
     pub pattern: Option<String>,
 
-    /// the maximum depth of the tree to display
-    #[clap(short = 'n', help = "The maximum depth of the tree to display")]
-    pub depth: Option<usize>,
 
     /// A pattern to exclude from the tree
     #[clap(short = 'e',long = "exclude", action)]
