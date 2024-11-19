@@ -25,6 +25,7 @@ pub fn visit_dirs(
     pattern: &str,
     exclude: &bool,
     dirs: &bool,
+    include: &String
 ) -> io::Result<()> {
     if dir.is_dir() {
         // collect all entries in the directory and sort them alphabetically
@@ -93,7 +94,7 @@ pub fn visit_dirs(
             }
             if path.is_dir() {
                 let new_prefix = format!("{}{}", prefix, new_prefix);
-                visit_dirs(&path, &new_prefix, &size, &all, total_size, num_files, &pattern, &exclude, &dirs)?;
+                visit_dirs(&path, &new_prefix, &size, &all, total_size, num_files, &pattern, &exclude, &dirs, &include)?;
             }
         }
     }

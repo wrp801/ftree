@@ -35,7 +35,9 @@ pub struct Args {
 
     /// A pattern to exclude from the tree
     #[clap(short = 'e',long = "exclude", action)]
-    pub exclude: bool
+    pub exclude: bool,
 
-
+    /// The directory or multiple directories (seperated by a |) to display
+    #[clap(short = 'i', long = "include", required = false)]
+    pub include: Option<String>
 }
